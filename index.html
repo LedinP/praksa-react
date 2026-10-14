@@ -1,13 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bs">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="index.css">
+    <title>Najveće kompanije na svijetu</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Lista najvećih kompanija na svijetu</h1>
+
+    <!-- DAN 2: dodavanje nove kompanije -->
+    <form id="forma">
+        <input type="text" id="naziv" placeholder="Naziv" required>
+        <input type="number" id="godina" placeholder="Godina" required>
+        <input type="text" id="direktor" placeholder="Direktor" required>
+        <input type="text" id="zaposlenih" placeholder="Broj zaposlenih" required>
+        <button type="submit">Dodaj kompaniju</button>
+    </form>
+
+    <!-- DAN 1: filter -->
+    <div class="filteri">
+        <button id="filterBtn">Samo kompanije prije 1990.</button>
+        <button id="prikaziSveBtn">Prikaži sve</button>
+    </div>
 
     <table>
         <thead>
@@ -16,13 +31,14 @@
                 <th>Godina</th>
                 <th>Direktor</th>
                 <th>Broj zaposlenih</th>
+                <th>Akcija</th>
             </tr>
         </thead>
         <tbody id="tijelo"></tbody>
     </table>
 
-    <button id="filterBtn">Prikaži samo kompanije prije 1990.</button>
-    
+    <p class="napomena">Klikni naziv kompanije ako želiš da promjeniš naziv kompanije</p>
+
     <script src="index.js"></script>
 </body>
 </html>
