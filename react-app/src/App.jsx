@@ -1,10 +1,21 @@
+import { useState } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Card from "./components/Card";
-import { igre } from "./data/igre";
+import GameForm from "./components/GameForm";
+import { igre as pocetneIgre } from "./data/igre";
 import "./App.css";
 
 function App() {
+  // STATE: lista igara. Kad se promijeni preko setIgre, React ponovo iscrta komponentu.
+  const [igre, setIgre] = useState(pocetneIgre);
+
+  function dodajIgru(novaIgra) {
+    // Stanje se nikad ne mijenja direktno (npr. push), nego pravimo NOVI niz:
+    // sve postojeće igre + nova na kraju.
+    setIgre((prethodne) => [...prethodne, { ...novaIgra, id: Date.now() }]);
+  }
+
   return (
     <>
       <Header />
@@ -12,9 +23,12 @@ function App() {
       <main className="container">
         <h1 className="naslov">Baza <span>video igara</span></h1>
 
+        {/* Šaljemo funkciju formi kao prop */}
+        <GameForm onDodaj={dodajIgru} />
+
+        <p className="brojac">Ukupno igara: {igre.length}</p>
+
         <section id="igre" className="grid">
-          {/* Isto kao map iz Dana 1, samo što umjesto HTML stringa vraćamo komponentu.
-              "key" mora biti jedinstven za svaki element liste. */}
           {igre.map((igra) => (
             <Card
               key={igra.id}
